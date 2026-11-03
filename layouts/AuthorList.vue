@@ -8,7 +8,10 @@ defineProps({
 </script>
 
 <template>
-  <div v-if="authors?.length" class="grid grid-cols-2 gap-6">
+  <div
+    v-if="authors?.length"
+    :class="['grid gap-x-6', authors.length > 2 ? 'grid-cols-3 gap-y-2' : 'grid-cols-2 gap-y-6']"
+  >
     <div v-for="author in authors" :key="author.name" class="flex items-center gap-3">
       <img
         v-if="author.image"
@@ -18,8 +21,13 @@ defineProps({
       />
       <div>
         <p class="text-base font-semibold text-gray-800 mb-0.5">{{ author.name }}</p>
-        <p class="text-xs text-gray-600 leading-relaxed">
-          Matrikelnummer: {{ author.matrikelnummer }}<br />
+        <p
+          v-if="author.matrikelnummer || author.email"
+          class="text-xs text-gray-600 leading-relaxed"
+        >
+          <template v-if="author.matrikelnummer"
+            >Matrikelnummer: {{ author.matrikelnummer }}<br
+          /></template>
           {{ author.email }}
         </p>
       </div>

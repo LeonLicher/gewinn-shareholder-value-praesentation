@@ -11,12 +11,13 @@ fonts:
 presentationInfo:
   title: 'Gewinn als Unternehmensziel?'
   subtitle: 'Rechnungswesenorientierte Ziele vs. Shareholder Value'
-  semester: 'Wintersemester 2026/27 · Gruppe 1 · Prof. Dr. Juliane Wolf'
+  semester: 'WiSe 2026/27 · Gruppe 1 · Prof. Dr. Juliane Wolf'
   authors:
+    - name: 'Christian Dörschug'
+    - name: 'Mathis Arends'
+    - name: 'Matteo Krandick'
     - name: 'Leon Licher'
-      matrikelnummer: '1233258'
-      email: 'll609274@fh-muenster.de'
-      image: '/images/licher.jpg'
+    - name: 'Daniel Fischer'
   chapters:
     - number: 1
       title: 'Gewinn als Ziel'
