@@ -1,95 +1,31 @@
-# Vortrags- und Recherche-Briefing
+# Vortrag: Gewinn als Unternehmensziel? (Gruppe 1)
 
-Arbeitsdokument für die spätere Neuerstellung der Präsentation. Diese Datei ist **nicht** die finale Rede, sondern sammelt Anforderungen, Rechercheentscheidungen, Timing und mögliche Prüfungsfragen.
+Quelle: Rappaport, A. (1999): *Shareholder Value*, 2. Aufl., Stuttgart, S. 15–24.
+Ziel: ca. 5 Minuten, 2 Inhaltsfolien; Anhang nur für Rückfragen.
 
-## Aufgabenstellung
+## Folie 2 – Unzulänglichkeiten & Beliebtheit (~2 Min.)
 
-- Veranstaltung: Machine and Deep Learning II
-- Kapitelkontext: Transformer Architectures II
-- Thema: DeepSeek Modellfamilie / Modellsammlung
-- Team: 2 Studierende
-- Zeit: 10 Minuten insgesamt, also ca. 5 Minuten pro Person
-- Umfang: 10 Hauptfolien, optional Anhang
-- Pflicht: sauber zitieren
-- Pflicht: zuerst Modellübersicht
-- Pflicht: danach das aktuellste und benchmark-stärkste passende DeepSeek-Modell fokussieren
-- Pflicht: originale Model Card im Anhang
-- Schwerpunkt: Architektur, nicht Unternehmensgeschichte oder Produktmarketing
+- Leitfrage nach Rappaport: Misst der Gewinn die Veränderung des ökonomischen Unternehmenswerts? Antwort: nein.
+- **Bewertungswahlrechte:** LIFO/FIFO, lineare oder degressive Abschreibung, Goodwill-Behandlung. Der Gewinn ändert sich, der Cashflow nicht, also auch nicht der Wert. Beispiel IBM/Lotus: Mehr als die Hälfte von 3,2 Mrd. $ wurde sofort als F&E abgeschrieben.
+- **Investitionen fehlen:** Wachstum bindet Kapital in Forderungen, Vorräten und Anlagen. Diese Investitionen sind kein Aufwand und mindern den Gewinn deshalb nicht.
+- **Zeitwert des Geldes:** Ein Dollar heute ist mehr wert als ein Dollar morgen. Der Gewinn wird nicht abgezinst.
+- **Risiko:** Der Gewinn enthält weder das Geschäfts- noch das Finanzierungsrisiko und auch keine Kapitalkosten.
+- **Warum trotzdem beliebt?** Der Gewinn ist einfach, liegt für jede Periode vor und ist gesetzlich normiert und geprüft (HGB/IFRS). Analysten und Presse berichten über EPS und KGV. Außerdem ist er die Grundlage für Ausschüttung, Steuern und Boni.
 
-## Noch zu entscheiden
+## Folie 3 – Gewinn ≠ Shareholder Value (~3 Min.)
 
-| Entscheidung | Status | Notizen |
-|---|---|---|
-| Finaler Modellfokus | Offen | Vor Erstellung online aus Primärquellen prüfen. |
-| Teamnamen und Matrikelnummern | Offen | In `slides.md` Frontmatter eintragen. |
-| Exakte Quellenbasis | Offen | DeepSeek Reports, Hugging Face, GitHub, arXiv. |
-| Sprecheraufteilung | Vorschlag | Person 1: Folien 1-5, Person 2: Folien 6-10. |
-| Model-Card-Format im Anhang | Offen | Screenshot, offizieller Auszug oder source-faithful Nachbildung. |
+- **Gamma Inc.:** Das Unternehmen hat kein Fremdkapital, 40 % Steuern, Vollausschüttung und Eigenkapitalkosten von 12 %. Der Wert ergibt sich als Cashflow / 0,12.
+  - Status quo: 18 / 0,12 = **150 Mio.**
+  - A: 15 Mio. Investition, Umsatz +10 %, Gewinn 19,8 (**+10 %**). Wert = 165 − 15 = **150**, also unverändert. Die Grenzrendite beträgt 1,8 / 15 = 12 % und entspricht genau den Kapitalkosten.
+  - B: 30 Mio. Investition, Umsatz +20 %, Gewinn 20,4 (**+13,3 %**). Wert = 170 − 30 = **140**, also **−10 Mio.** Die Grenzrendite beträgt 2,4 / 30 = 8 % und liegt unter den Kapitalkosten.
+  - Fazit: Bei Gewinnmaximierung würde man B wählen, bei Wertmaximierung A oder den Status quo. Die beiden Ziele führen also zu **unterschiedlichen Entscheidungen**.
+- **Gewinn ≠ Cashflow (Tab. 2-1):** Einem Reingewinn von 500.000 $ steht nur ein Cashflow von 40.000 $ gegenüber, weil Working Capital aufgebaut und investiert wurde.
+- **Empirie S&P 500 (Tab. 2-2):** 1994 stieg der EPS um 39,9 %, die Aktionärsrendite betrug nur 1,3 %. 1991 sank der EPS um 25,2 %, die Rendite lag trotzdem bei 30,6 %. Ein systematischer Zusammenhang ist nicht erkennbar.
+- **Kernaussage:** Wert entsteht nur, wenn neue Investitionen mehr verdienen als die Kapitalkosten.
 
-## Recherche-Checkliste
+## Mögliche Rückfragen
 
-Vor der finalen Folienerstellung prüfen:
-
-- Welche DeepSeek-Modelle sind aktuell verfügbar?
-- Welches Modell ist das neueste relevante Release?
-- Welches Modell ist in den relevanten Benchmarks am stärksten?
-- Sind "neuestes" und "benchmark-stärkstes" Modell identisch?
-- Welche Architekturmerkmale sind zentral?
-- Welche Zahlen sind sicher belegt: Parameter, aktive Parameter, Kontextlänge, Trainingsdaten, GPU-Stunden, Kosten, Benchmarkwerte?
-- Welche Lizenz und Nutzungsgrenzen nennt die offizielle Model Card?
-- Welche Claims gehören in den Hauptteil, welche in den Anhang?
-
-## Primärquellen-Protokoll
-
-| Claim | Quelle | URL/arXiv | Datum/Zugriff | Ziel-Folie |
-|---|---|---|---|---|
-| Modell ist aktuelles Release | TODO | TODO | TODO | 2-3 |
-| Modell ist benchmark-stark | TODO | TODO | TODO | 3, 9 |
-| Architekturdetail Attention | TODO | TODO | TODO | 5 |
-| Architekturdetail MoE/Sparse Compute | TODO | TODO | TODO | 6 |
-| Training/Inferenz-Effizienz | TODO | TODO | TODO | 7 |
-| Post-Training/Reasoning | TODO | TODO | TODO | 8 |
-| Model Card | TODO | TODO | TODO | Anhang A |
-
-## 10-Folien-Timing
-
-| Folie | Inhalt | Sprecher | Zielzeit |
-|---|---|---|---|
-| 1 | Cover | Beide | 0:20 |
-| 2 | Modellfamilie | Person 1 | 1:00 |
-| 3 | Ausgewähltes Modell + Model-Card-Summary | Person 1 | 1:00 |
-| 4 | Transformer-Basis | Person 1 | 1:00 |
-| 5 | Attention/Kontext | Person 1 | 1:30 |
-| 6 | MoE/Sparse Compute | Person 2 | 1:30 |
-| 7 | Training/Inferenz | Person 2 | 1:15 |
-| 8 | Reasoning/Post-Training | Person 2 | 1:15 |
-| 9 | Benchmarks/Grenzen | Person 2 | 0:50 |
-| 10 | Takeaways | Beide | 0:20 |
-
-Summe: ca. 10 Minuten. Beim Üben pro Person auf ca. 5 Minuten kürzen.
-
-## Redeprinzip
-
-Jede Folie sollte in einem Satz beantwortbar sein:
-
-> Welche Architekturentscheidung macht DeepSeek hier, welches Problem löst sie, und welcher belegte Effekt entsteht?
-
-## Erwartbare Fragen
-
-| Frage | Antwort vorbereiten |
-|---|---|
-| Warum genau dieses DeepSeek-Modell? | Mit Release-Status, Benchmarks und Quellen begründen. |
-| Was ist wirklich Architektur und was ist Training? | Basismodell, Attention, MoE, Systemdesign, Post-Training sauber trennen. |
-| Was bedeutet "aktive Parameter"? | Nur eine geroutete Teilmenge der MoE-Parameter wird pro Token berechnet. |
-| Wie fair sind die Benchmarks? | Benchmarkversion, Vergleichsmodelle und Quelle nennen; Grenzen offen ansprechen. |
-| Ist Open-Weight dasselbe wie Open-Source? | Nein. Gewichte/Lizenz, Code und Trainingsdaten getrennt betrachten. |
-| Wo ist die originale Model Card? | Im Anhang mit Quelle und Zugriffsdatum. |
-
-## Qualitätskriterien für die finale Version
-
-- Genau 10 Hauptfolien.
-- Keine alten, ungeprüften Zahlen.
-- Jeder numerische Claim hat eine Quelle.
-- Keine überfüllten Tabellen im Hauptteil.
-- Architektur steht klar vor Historie, Kosten und Hype.
-- Appendix enthält Model Card und vollständige Bibliografie.
+- *Ist der Shareholder Value nicht auch manipulierbar?* Ja, über die Annahmen zu Cashflow-Prognosen und Kapitalkosten. Er basiert aber auf Zahlungsströmen und nicht auf Bilanzierungswahlrechten.
+- *Warum weicht die Umsatzrendite in B ab?* Rappaport nennt 10 %. Das ist die Rendite auf den **Zusatzumsatz** (4 / 40). Auf den Gesamtumsatz bezogen ergibt sich 34 / 240 ≈ 14 %.
+- *Wie verhält es sich mit ROI und ROE?* Beide sind ebenfalls buchhalterische Größen und haben dieselben Schwächen (Rappaport behandelt sie im selben Kapitel).
+- *Kann der Kurs trotz Gewinnwachstum fallen?* Ja, wenn das Ergebnis unter den Markterwartungen liegt. Kurse bilden Erwartungen über künftigen Wert ab.

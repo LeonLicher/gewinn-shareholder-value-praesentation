@@ -2,506 +2,247 @@
 theme: default
 highlighter: shiki
 favicon: /images/favicon.png
-title: DeepSeek
+title: Gewinn vs. Shareholder Value
 fonts:
   sans: 'Nunito Sans'
   serif: 'Nunito Sans'
   mono: 'Fira Code'
   weights: '400, 500, 600,700'
 presentationInfo:
-  title: 'DeepSeek'
-  subtitle: 'Architektur und Besonderheiten'
-  semester: 'Sommersemester 2026'
+  title: 'Gewinn als Unternehmensziel?'
+  subtitle: 'Rechnungswesenorientierte Ziele vs. Shareholder Value'
+  semester: 'Wintersemester 2026/27 · Gruppe 1 · Prof. Dr. Juliane Wolf'
   authors:
     - name: 'Leon Licher'
       matrikelnummer: '1233258'
       email: 'll609274@fh-muenster.de'
       image: '/images/licher.jpg'
-    - name: 'Daniel Fischer'
-      matrikelnummer: '1255216'
-      email: 'df094981@fh-muenster.de'
-      image: '/images/fischer.jpg'
   chapters:
     - number: 1
-      title: 'Modellfamilie'
+      title: 'Gewinn als Ziel'
     - number: 2
-      title: 'Architektur'
+      title: 'Gewinn vs. Shareholder Value'
     - number: 3
-      title: 'Einordnung'
+      title: 'Anhang'
 ---
 layout: cover
 
 ---
-title: Modellübersicht
-subtitle: DeepSeek-Familie im Überblick
+title: Gewinn als Unternehmensziel
+subtitle: Unzulänglichkeiten – und warum er trotzdem so beliebt ist
 chapter: 1
-footnotes:
-  - 'Release-Timeline: DeepSeek API Docs, News-Liste und V4 Preview Release,
-    Zugriff 25.05.2026.'
 ---
 
-<!-- Architektur: Reiner Dense Transformer im Llama-Sti -->
+<Columns columns="1.15fr 0.85fr" gap="1.25rem">
+  <BulletedList title="Unzulänglichkeiten des Gewinns">
+    <li>
+      <b>Bewertungswahlrechte</b><Footnote text="Rappaport, A. (1999): Shareholder Value, 2. Aufl., Stuttgart, S. 16–23." />
+      <SubText>LIFO/FIFO, Abschreibungsmethoden, Goodwill: Gewinn ändert sich, Cashflow und Wert nicht.</SubText>
+    </li>
+    <li>
+      <b>Investitionsbedarf wird ausgeblendet</b>
+      <SubText>Mehr Forderungen, Vorräte und Anlagen binden Liquidität, erscheinen aber nicht als Aufwand.</SubText>
+    </li>
+    <li>
+      <b>Kein Zeitwert des Geldes</b>
+      <SubText>Gewinn ist eine Periodengröße und wird nicht abgezinst; Zahlungszeitpunkte bleiben unberücksichtigt.</SubText>
+    </li>
+    <li>
+      <b>Risiko bleibt unberücksichtigt</b>
+      <SubText>Geschäfts- und Finanzierungsrisiko sowie die Kapitalkosten fehlen in der Gewinngröße.</SubText>
+    </li>
+  </BulletedList>
 
-<ModelTimeline
-  :items="[
-    { date: '2023', title: 'DeepSeek LLM', detail: 'Dense Transformer im Llama-Stil' },
-    { date: '2024', title: 'DeepSeek-V2', detail: 'DeepSeekMoE + MLA eingeführt' },
-    { date: 'Dez. 2024', title: 'DeepSeek-V3', detail: '671B/37B MoE, MLA, MTP, FP8' },
-    { date: 'Jan. 2025', title: 'DeepSeek-R1', detail: 'Reasoning via RL (GRPO)' },
-    { date: '2025', title: 'DeepSeek-V3.2', detail: 'DeepSeek Sparse Attention (DSA)' },
-    { date: 'Apr. 2026', title: 'DeepSeek-V4', detail: 'Hybrid Attention, mHC, Muon', active: true }
-  ]"
-/>
-
-<!--
-Start auf Basis von Llama Modell 
-eigener Datensatz
--->
-
----
-title: Technologische Grundlagen
-subtitle: Bausteine aus V2 und V3
-chapter: 1
-footnotes:
-  - 'Quellen: DeepSeek-V2 arXiv:2405.04434; DeepSeek-V3 arXiv:2412.19437;
-    DeepSeekMoE arXiv:2401.06066.'
----
-
-<BulletedList title="Bisherige DeepSeek-Bausteine">
-  <li>
-    <b>Multi-Head Latent Attention (MLA)</b> (V2)
-    <SubText>komprimiert den KV-Cache in eine latente Darstellung.</SubText>
-  </li>
-  <li>
-    <b>DeepSeekMoE</b> (V2)
-    <SubText>aktiviert pro Token nur wenige Experten statt das gesamte Netz.</SubText>
-  </li>
-  <li>
-    <b>Multi-Token Prediction (MTP)</b> (V3)
-    <SubText>sagt im Training mehrere kommende Tokens zugleich voraus.</SubText>
-  </li>
-  <li>
-    <b>Auxiliary-Loss-Free Load Balancing</b> (V3)
-    <SubText>balanciert Experten dynamisch über Router-Bias statt Straf-Loss.</SubText>
-  </li>
-</BulletedList>
-
-<!--
-Multi Head Latent Attention
-Komprimieren des Arbeitsspeichers, des Kontext des Modells 
-93% weniger Speicherbedarf
-Analogie Komissar legt 99+1 Blätter Schreibtisch
-
-Multi Token Prediction
-Mehrere Token werden auf ein mal vorhergesagt. 
-Parallel ein Strang SingleToken Prediction und MTP
-Statisch Sinn = behalten -> Effizenz
--->
-
----
-title: Technische Fakten zu DeepSeek V4
-subtitle: Pro, Flash und neue Architekturhebel
-chapter: 1
-footnotes:
-  - 'Quelle: DeepSeek V4 Preview Release und offizielle DeepSeek V4 Model Card
-    PDF, Zugriff 25.05.2026.'
----
-
-<BulletedList title="DeepSeek V4 in einem Blick">
-  <li>
-    <b>V4-Pro</b>: 1.6T Parameter, 49B aktiv pro Token
-    <SubText>Flagship-Variante für Reasoning, Knowledge und Coding.</SubText>
-  </li>
-  <li>
-    <b>V4-Flash</b>: 284B Parameter, 13B aktiv pro Token
-    <SubText>effizientere Variante für Standardaufgaben.</SubText>
-  </li>
-  <li>
-    <b>Gemeinsamkeiten</b>: 1M Kontext, MIT-Lizenz, FP4/FP8 Mixed Precision
-    <SubText>beide bleiben Mixture-of-Experts-Modelle.</SubText>
-  </li>
-  <li>
-    <b>Neue Hebel</b>: Hybrid Attention, mHC, Muon
-    <SubText>V4 verbessert Kontextkosten, Signalfluss und Training.</SubText>
-  </li>
-</BulletedList>
-
-<!--
-Löwenanteil des Speichers in FP4 abgelegt
--->
-
----
-title: Hybrid Attention
-subtitle: 'Besonderheiten von DeepSeek: CSA und HCA'
-chapter: 2
-footnotes:
-  - 'Quelle: DeepSeek-V4 Model Card, Hybrid Attention Architecture, Zugriff
-    25.05.2026.'
----
-
-<Columns columns="1.35fr 0.9fr" gap="1rem">
-  <div class="space-y-3">
-    <BulletedList title="CSA (Compressed Sparse Attention)">
-      <li>Token-Blöcke komprimieren</li>
-      <li>Indexer wählt Top-k Blöcke</li>
-      <li>Sliding Window behält lokale Details</li>
-    </BulletedList>
-    <Text title="HCA (Heavily Compressed Attention)">
-      stärker komprimierter globaler Überblick für lange Sequenzen.
-    </Text>
-    <Text>
-      <HighlightedText>Konsequenz:</HighlightedText>
-      Bei 1M Kontext nur 27 % FLOPs und 10 % KV-Cache im Vergleich zu V3.2.
-    </Text>
-  </div>
-
-  <Image
-    src="/images/abbildungen/csa.png"
-    alt="Compressed Sparse Attention"
-    caption="Compressed Sparse Attention mit Lightning Indexer"
-    maxWidth="100%"
-    height="345px"
-    source="Q3"
-  />
+  <BulletedList title="Gründe für die Beliebtheit">
+    <li>
+      <b>Einfach &amp; verfügbar</b>
+      <SubText>Wird pro Periode ermittelt, ist leicht verständlich und schnell kommuniziert.</SubText>
+    </li>
+    <li>
+      <b>Normiert &amp; geprüft</b>
+      <SubText>HGB/IFRS und die Abschlussprüfung schaffen Vergleichbarkeit und Vertrauen.</SubText>
+    </li>
+    <li>
+      <b>Kapitalmarkt-Fokus auf EPS</b><Footnote text="Rappaport, A. (1999): Shareholder Value, 2. Aufl., Stuttgart, S. 15. Übrige Gründe: eigene Ergänzung." />
+      <SubText>Presse und Analysten berichten über Gewinn pro Aktie und KGV.</SubText>
+    </li>
+    <li>
+      <b>Anknüpfungspunkt</b>
+      <SubText>Grundlage für Ausschüttung, Steuern und Managementvergütung.</SubText>
+    </li>
+  </BulletedList>
 </Columns>
 
 <!--
-Kontext steigt normal quadratisch 100*100 Wörter
+Kernaussage: Der Gewinn misst Periodenerfolg nach Buchhaltungsregeln, nicht die Veränderung des ökonomischen Unternehmenswerts.
+
+Rappaport nennt drei Gründe (S. 16 ff.):
+1. Alternative Bewertungsverfahren (LIFO/FIFO, linear vs. degressiv, Goodwill). Beispiel IBM/Lotus: Mehr als die Hälfte des Kaufpreises von 3,2 Mrd. $ wurde sofort als F&E abgeschrieben.
+2. Investitionen ins Umlauf- und Anlagevermögen werden nicht abgezogen.
+3. Der Zeitwert des Geldes wird ignoriert.
+Zusätzlich fehlt das Risiko (S. 23).
+
+Beliebtheit: Der Gewinn ist bequem, rechtlich verankert (Ausschüttungsbemessung, Steuerbilanz) und wird vom Kapitalmarkt laufend kommuniziert ("zwanghafte Beschäftigung mit EPS", S. 15).
 -->
 
 ---
-title: Manifold-Constrained Hyper-Connections
-subtitle: 'Besonderheiten von DeepSeek: mHC'
+title: Gewinn ≠ Shareholder Value
+subtitle: Warum beide Ziele zu unterschiedlichen Entscheidungen führen
 chapter: 2
-footnotes:
-  - 'Quelle: DeepSeek-V4 Model Card und Technical Report, mHC-Abschnitt.'
 ---
 
-<Columns columns="1.2fr 0.85fr" gap="1rem">
-  <div class="space-y-3">
-    <NumberedList title="mHC in drei Schritten" size="sm">
-      <li>Residual-Stream auf mehrere Pfade erweitern</li>
-      <li>Pre-, Post- und Res-Mapping kontrollieren</li>
-      <li>Projektion stabilisiert die Signalenergie</li>
-    </NumberedList>
-    <Text>
-      <HighlightedText>Konsequenz:</HighlightedText>
-      bessere Signalweitergabe über viele Layer ohne instabiles Training.
-    </Text>
-  </div>
-
-  <Image
-    src="/images/abbildungen/mHC.png"
-    alt="Residual Connections, Hyper-Connections und mHC"
-    caption="Von Residual Connections zu manifold-constrained Hyper-Connections"
-    maxWidth="100%"
-    height="350px"
-    source="Q3"
-  />
-</Columns>
-
-<!--
-c) Mathematik zur Stabilisierung der Matrix
-vanishing/ exploding Gradient
-
-Lösung mit Hyper-Connections
--->
-
----
-title: Muon und Post-Training
-subtitle: 'Besonderheiten von DeepSeek: Optimizer und Konsolidierung'
-chapter: 2
-footnotes:
-  - 'Quelle: DeepSeek-V4 Model Card; Muon-Algorithmus nach Keller Jordan, Zugriff 25.05.2026.'
----
-
-<Columns columns="1fr 1fr" gap="1rem">
-  <div class="space-y-3">
-    <BulletedList title="Muon">
-      <li>orthogonalisierte Updates für Hauptmatrizen</li>
-      <li>AdamW bleibt für Spezialteile wie Embeddings</li>
-      <li>Newton-Schulz beschleunigt die Orthogonalisierung</li>
-    </BulletedList>
-    <Text title="Post-Training">
-      SFT + GRPO pro Domäne, danach On-Policy-Distillation in ein Modell.
-    </Text>
-    <Text>
-      <HighlightedText>Konsequenz:</HighlightedText>
-      stabileres Training und bessere Zusammenführung spezialisierter Experten.
-    </Text>
-  </div>
-
-  <div class="flex flex-col items-center">
-    <Image
-      src="/images/abbildungen/muon-algorithm.png"
-      alt="Muon Algorithmus"
-      caption="Muon Optimizer: orthogonalisierte Parameter-Updates"
-      maxWidth="100%"
-      height="190px"
-      source="Q5"
-      captionAlign="center"
+<Columns columns="1.1fr 0.9fr" gap="1.25rem">
+  <div>
+    <Table
+      :headers="['Gamma Inc. (Mio. $)', 'Status quo', 'A: +15 Invest.', 'B: +30 Invest.']"
+      :rows="[
+        ['Umsatz', '200', '220', '240'],
+        ['Umsatzrendite (vor St.)', '15 %', '15 %', '≈ 14 %'],
+        ['Gewinn nach Steuern', '18,0', '19,8', '20,4'],
+        ['Gewinnwachstum', '–', '<b>+10 %</b>', '<b>+13,3 %</b>'],
+        ['Shareholder Value', '150', '165 − 15 = <b>150</b>', '170 − 30 = <b>140</b>']
+      ]"
+      :columnWidths="['34%', '20%', '23%', '23%']"
+      accent="blue"
+      size="sm"
     />
-    <div class="mt-2 flex justify-center">
-      <Image
-        src="/images/abbildungen/muon-benchmark.png"
-        alt="Muon Benchmark"
-        caption="Optimizer-Vergleich auf NanoGPT"
-        maxWidth="100%"
-        height="135px"
-        source="Q6"
-        captionAlign="center"
-      />
+    <div class="mt-3">
+      <ExampleBox title="Ergebnis">
+        Nach dem Gewinnziel wäre <b>B</b> die beste Wahl. Nach dem Shareholder-Value-Ziel ist <b>B</b> die schlechteste, weil die Rendite auf die Zusatzinvestition unter den Kapitalkosten liegt.<Footnote text="Beispiel Gamma Inc. nach Rappaport, A. (1999): Shareholder Value, 2. Aufl., Stuttgart, S. 21–23; Wert = Cashflow / 12 % Eigenkapitalkosten (ewige Rente)." />
+      </ExampleBox>
     </div>
   </div>
+
+  <BulletedList title="Weitere Belege">
+    <li>
+      <b>Gewinn ≠ Cashflow</b><Footnote text="Rappaport, A. (1999): Shareholder Value, 2. Aufl., Stuttgart, S. 17 (IBM/Lotus), S. 19 (Tab. 2-1), S. 24 (Tab. 2-2)." />
+      <SubText>Tabelle 2-1: 500.000 $ Reingewinn, aber nur 40.000 $ Cashflow (Working Capital + Investitionen).</SubText>
+    </li>
+    <li>
+      <b>Bilanzpolitik</b>
+      <SubText>IBM/Lotus: über die Hälfte der 3,2 Mrd. $ sofort als F&amp;E abgeschrieben. Spätere Gewinne steigen, der Wert bleibt gleich.</SubText>
+    </li>
+    <li>
+      <b>Empirie S&amp;P 500</b>
+      <SubText>1994: EPS +39,9 %, Aktionärsrendite +1,3 %; 1991: EPS −25,2 %, Rendite +30,6 %.</SubText>
+    </li>
+    <li>
+      <b>Fazit</b>
+      <SubText>Wert entsteht nur, wenn die Rendite neuer Investitionen über den Kapitalkosten liegt.</SubText>
+    </li>
+  </BulletedList>
+</Columns>
+
+<!--
+Mechanismus: Wachstum mit Investitionen kann den Gewinn auch dann steigern, wenn die Rendite unter den Kapitalkosten liegt. Der Gewinn zieht weder die Investition noch die Kapitalkosten ab.
+
+Gamma-Rechnung (Eigenkapitalkosten 12 %, Vollausschüttung, kein Fremdkapital):
+- Status quo: 18 / 0,12 = 150
+- A: 19,8 / 0,12 = 165 − 15 = 150 → Gewinn +10 %, Wert unverändert (Rendite = 12 % = Kapitalkosten)
+- B: 20,4 / 0,12 = 170 − 30 = 140 → Gewinn +13,3 %, Wert −10 Mio. (Rendite 2,4 / 30 = 8 % < 12 %)
+
+Rappaport nennt für B eine Umsatzrendite von 10 % statt 15 %. Rechnerisch ergibt sich aus 34 / 240 ein Wert von ca. 14 % auf den Gesamtumsatz. Die Grenzrendite auf den Zusatzumsatz liegt bei 4 / 40 = 10 %.
+
+Zusätzlich: Aktienkurse reagieren auf Erwartungen. Liegt der ausgewiesene Gewinn unter den Erwartungen, kann der Kurs trotz Gewinnwachstum fallen.
+-->
+
+---
+layout: closing
+---
+
+---
+title: Anhang A – Rechnung Gamma Inc.
+subtitle: Detaillierte Überleitung nach Rappaport (1999), S. 21–23
+chapter: 3
+---
+
+<Columns columns="1fr 1fr" gap="1.25rem">
+  <Table
+    :headers="['Mio. $', 'Status quo', 'A', 'B']"
+    :rows="[
+      ['Umsatz', '200,0', '220,0', '240,0'],
+      ['Betriebsaufwand', '170,0', '187,0', '206,0'],
+      ['Gewinn vor Steuern', '30,0', '33,0', '34,0'],
+      ['Steuern (40 %)', '12,0', '13,2', '13,6'],
+      ['Gewinn = Cashflow', '18,0', '19,8', '20,4'],
+      ['Barwert (÷ 0,12)', '150,0', '165,0', '170,0'],
+      ['− Investition', '0,0', '15,0', '30,0'],
+      ['<b>Shareholder Value</b>', '<b>150,0</b>', '<b>150,0</b>', '<b>140,0</b>']
+    ]"
+    :columnWidths="['40%', '20%', '20%', '20%']"
+    accent="blue"
+    size="sm"
+  />
+
+  <div class="flex flex-col gap-3">
+    <DefinitionBox title="Grenzrendite der Zusatzinvestition">
+      A: 1,8 / 15 = <b>12 %</b> = Kapitalkosten → Wert bleibt gleich<br />
+      B: 2,4 / 30 = <b>8 %</b> &lt; Kapitalkosten → Wert sinkt<Footnote text="Rappaport, A. (1999): Shareholder Value, 2. Aufl., Stuttgart, S. 20–23. Annahmen: kein Fremdkapital, 40 % Steuern, Vollausschüttung, konstante Cashflows, Eigenkapitalkosten 12 %." />
+    </DefinitionBox>
+    <ExampleBox title="Betrieblicher Cashflow (Rappaport, S. 20)">
+      Umsatz − Betriebsaufwand inkl. Steuern<br />
+      + Abschreibungen u. a. nicht zahlungswirksame Posten<br />
+      − Zusatzinvestitionen ins Umlaufvermögen<br />
+      − Zusatzinvestitionen ins Anlagevermögen
+    </ExampleBox>
+  </div>
 </Columns>
 
 ---
-title: Architekturübersicht
-subtitle: V4-Pro vs. V4-Flash
-chapter: 2
----
-
-<figure class="m-0 flex flex-col items-center">
-  <img
-    src="/images/abbildungen/architecture_deepseekv4.png"
-    alt="DeepSeek V4 Architecture Overview"
-    class="w-full h-[365px] object-contain object-center"
-  />
-  <figcaption class="text-xs text-gray-500 italic mt-1 text-center">Quelle: Q3.</figcaption>
-</figure>
-
----
-title: Benchmarks
-subtitle: Übersicht der Benchmarks
+title: Anhang B – Gewinn vs. Cashflow & Empirie
+subtitle: Tabelle 2-1 und 2-2 nach Rappaport (1999)
 chapter: 3
-footnotes:
-  - 'Quelle: Offizielle DeepSeek V4 Model Card PDF, Evaluation Results, Zugriff 25.05.2026.'
 ---
 
-<Columns columns="1fr 1fr" gap="1rem">
+<Columns columns="1fr 1fr" gap="1.25rem">
   <Table
-    :headers="['Base', 'V3.2', 'V4-Pro']"
+    :headers="['Überleitung (Tab. 2-1)', 'Tsd. $']"
     :rows="[
-      ['MMLU', '87.8', '90.1'],
-      ['MMLU-Pro', '65.5', '73.5'],
-      ['C-Eval', '90.4', '93.1'],
-      ['MultiLoKo', '38.7', '51.1']
+      ['Reingewinn', '500'],
+      ['− Zunahme Forderungen', '−200'],
+      ['− Zunahme Vorräte', '−300'],
+      ['+ Zunahme Verbindlichkeiten (50 + 10)', '+60'],
+      ['+ Abschreibungen', '+100'],
+      ['− Investitionen ins Anlagevermögen', '−150'],
+      ['+ Zunahme Steuerrückstellungen', '+30'],
+      ['<b>Cashflow</b>', '<b>40</b>']
     ]"
-    :columnWidths="['42%', '29%', '29%']"
+    :columnWidths="['72%', '28%']"
     accent="blue"
     size="sm"
   />
 
   <Table
-    :headers="['HF Eval', 'V4-Pro']"
+    :headers="['S&P 500', 'EPS-Wachstum', 'Aktionärsrendite']"
     :rows="[
-      ['SWE-Bench Verified', '80.6'],
-      ['SWE-Bench Pro', '55.4'],
-      ['GPQA Diamond', '90.1'],
-      ['Terminal-Bench 2', '67.9']
+      ['1987', '+20,9 %', '+5,2 %'],
+      ['1989', '−3,6 %', '+31,5 %'],
+      ['1991', '−25,2 %', '+30,6 %'],
+      ['1993', '+14,6 %', '+10,0 %'],
+      ['1994', '+39,9 %', '+1,3 %'],
+      ['1995', '+11,0 %', '+37,4 %'],
+      ['1996', '+14,0 %', '+23,1 %']
     ]"
-    :columnWidths="['65%', '35%']"
+    :columnWidths="['30%', '35%', '35%']"
     accent="gray"
     size="sm"
   />
 </Columns>
 
-<div class="mt-4">
-  <ExampleBox title="Interpretationshinweis">
-    Die Werte beziehen sich auf spezifische Modellvarianten und Evaluationsmodi; Base-, Instruct- und Thinking-Ergebnisse sind getrennt zu interpretieren.
-  </ExampleBox>
+<div class="mt-3 text-sm text-gray-500">
+  Auswahl aus Tab. 2-2 (1986–1996). Zwischen EPS-Wachstum und Aktionärsrendite (Dividenden + Kursänderung) ist kein systematischer Zusammenhang erkennbar.<Footnote text="Rappaport, A. (1999): Shareholder Value, 2. Aufl., Stuttgart, S. 19 (Tab. 2-1) und S. 24 (Tab. 2-2); Daten: Standard &amp; Poor’s, Ibbotson Associates (1997)." />
 </div>
 
 ---
-title: Fazit
-subtitle: Zusammenfassung
-chapter: 3
----
-
-<NumberedList title="Architekturelle Schlussfolgerungen">
-  <li>
-    Langer Kontext erfordert selektive Attention.
-    <SubText>CSA/HCA reduzieren Berechnung und KV-Cache durch Sequenzkompression und blockweise Auswahl relevanter Inhalte.</SubText>
-  </li>
-  <li>
-    Sparse MoE entkoppelt Modellkapazität vom aktiven Rechenaufwand.
-    <SubText>Pro Token wird nur ein Teil der Experten aktiviert; die Gesamtparameterzahl steigt ohne proportionalen Inferenzaufwand.</SubText>
-  </li>
-  <li>
-    Trainingsstabilität wird architektonisch adressiert.
-    <SubText>mHC, Muon und Post-Training stabilisieren Signalfluss, Optimierung und die Zusammenführung spezialisierter Fähigkeiten.</SubText>
-  </li>
-</NumberedList>
-
----
-title: Anhang A - Quellen
-subtitle: Primärquellen und verwendete Abbildungen
+title: Anhang C – Literatur
+subtitle: Quellenverzeichnis
 chapter: 3
 ---
 
 <CitationTable
   :citations="[
-    { id: 'Q1', text: 'DeepSeek API Docs: DeepSeek V4 Preview Release, 24.04.2026. https://api-docs.deepseek.com/news/news260424. Zugriff: 25.05.2026.' },
-    { id: 'Q2', text: 'DeepSeek: DeepSeek V4 Model Card PDF. https://fe-static.deepseek.com/chat/transparency/deepseek-V4-model-card-EN.pdf. Zugriff: 25.05.2026. Lokale Kopie: public/model-card/deepseek-V4-model-card-EN.pdf.' },
-    { id: 'Q3', text: 'DeepSeek V4 architecture deep dive. https://boringbot.substack.com/p/deepseek-v4-architecture-deep-dive?trk=public_post_comment-text. Zugriff: 26.05.2026.' },
-    { id: 'Q4', text: 'DeepSeek-AI: DeepSeek-V2, arXiv:2405.04434; DeepSeek-V3, arXiv:2412.19437; DeepSeekMoE, arXiv:2401.06066.' },
-    { id: 'Q5', text: 'Keller Jordan: Muon optimizer notes. https://kellerjordan.github.io/posts/muon/. Zugriff: 25.05.2026.' },
-    { id: 'Q6', text: 'Laker Newhouse: Understanding Muon, 2025. https://www.lakernewhouse.com/muon/. Zugriff: 25.05.2026.' }
+    { id: '1', text: 'Rappaport, Alfred (1999): Shareholder Value. Ein Handbuch für Manager und Investoren, 2. Aufl., Stuttgart: Schäffer-Poeschel, S. 15–24.' },
+    { id: '2', text: 'Standard &amp; Poor’s; Ibbotson Associates (1997): Stocks, Bonds, Bills, and Inflation – 1997 Yearbook, Chicago (zitiert nach [1], Tab. 2-2).' }
   ]"
-  idWidth="55px"
-/>
-
----
-title: Anhang B - Abkürzungsverzeichnis
-subtitle: Architektur- und Benchmark-Kürzel
-chapter: 3
----
-
-<Columns columns="1fr 1fr" gap="1rem">
-  <Table
-    :headers="['Kürzel', 'Bedeutung']"
-    :rows="[
-      ['CSA', 'Compressed Sparse Attention'],
-      ['DSA', 'DeepSeek Sparse Attention'],
-      ['FLOPs', 'Floating Point Operations'],
-      ['FP4/FP8', '4-/8-Bit Floating Point'],
-      ['GRPO', 'Group Relative Policy Optimization'],
-      ['HCA', 'Heavily Compressed Attention'],
-      ['KV-Cache', 'Key-Value-Cache'],
-      ['mHC', 'Manifold-Constrained Hyper-Connections']
-    ]"
-    :columnWidths="['30%', '70%']"
-    accent="blue"
-    size="sm"
-  />
-
-  <Table
-    :headers="['Kürzel', 'Bedeutung']"
-    :rows="[
-      ['GPQA', 'Graduate-Level Google-Proof Q&A'],
-      ['MMLU', 'Massive Multitask Language Understanding'],
-      ['MIT', 'MIT License'],
-      ['MLA', 'Multi-Head Latent Attention'],
-      ['MoE', 'Mixture of Experts'],
-      ['MTP', 'Multi-Token Prediction'],
-      ['RL', 'Reinforcement Learning'],
-      ['SFT', 'Supervised Fine-Tuning'],
-      ['SWE-Bench', 'Software Engineering Benchmark']
-    ]"
-    :columnWidths="['30%', '70%']"
-    accent="blue"
-    size="sm"
-  />
-</Columns>
-
----
-title: Anhang C.1 - Model Card
-subtitle: Originalseite 1/8
-chapter: 3
-footnotes:
-  - 'Original: DeepSeek V4 Model Card PDF, https://fe-static.deepseek.com/chat/transparency/deepseek-V4-model-card-EN.pdf. Zugriff: 25.05.2026.'
----
-
-<img
-  src="/model-card/pages/deepseek-v4-model-card-1.png"
-  alt="Original DeepSeek V4 Model Card Seite 1"
-  class="mx-auto h-[455px] max-w-full rounded border border-gray-200 bg-white object-contain"
-/>
-
----
-title: Anhang C.2 - Model Card
-subtitle: Originalseite 2/8
-chapter: 3
-footnotes:
-  - 'Original: DeepSeek V4 Model Card PDF, https://fe-static.deepseek.com/chat/transparency/deepseek-V4-model-card-EN.pdf. Zugriff: 25.05.2026.'
----
-
-<img
-  src="/model-card/pages/deepseek-v4-model-card-2.png"
-  alt="Original DeepSeek V4 Model Card Seite 2"
-  class="mx-auto h-[455px] max-w-full rounded border border-gray-200 bg-white object-contain"
-/>
-
----
-title: Anhang C.3 - Model Card
-subtitle: Originalseite 3/8
-chapter: 3
-footnotes:
-  - 'Original: DeepSeek V4 Model Card PDF, https://fe-static.deepseek.com/chat/transparency/deepseek-V4-model-card-EN.pdf. Zugriff: 25.05.2026.'
----
-
-<img
-  src="/model-card/pages/deepseek-v4-model-card-3.png"
-  alt="Original DeepSeek V4 Model Card Seite 3"
-  class="mx-auto h-[455px] max-w-full rounded border border-gray-200 bg-white object-contain"
-/>
-
----
-title: Anhang C.4 - Model Card
-subtitle: Originalseite 4/8
-chapter: 3
-footnotes:
-  - 'Original: DeepSeek V4 Model Card PDF, https://fe-static.deepseek.com/chat/transparency/deepseek-V4-model-card-EN.pdf. Zugriff: 25.05.2026.'
----
-
-<img
-  src="/model-card/pages/deepseek-v4-model-card-4.png"
-  alt="Original DeepSeek V4 Model Card Seite 4"
-  class="mx-auto h-[455px] max-w-full rounded border border-gray-200 bg-white object-contain"
-/>
-
----
-title: Anhang C.5 - Model Card
-subtitle: Originalseite 5/8
-chapter: 3
-footnotes:
-  - 'Original: DeepSeek V4 Model Card PDF, https://fe-static.deepseek.com/chat/transparency/deepseek-V4-model-card-EN.pdf. Zugriff: 25.05.2026.'
----
-
-<img
-  src="/model-card/pages/deepseek-v4-model-card-5.png"
-  alt="Original DeepSeek V4 Model Card Seite 5"
-  class="mx-auto h-[455px] max-w-full rounded border border-gray-200 bg-white object-contain"
-/>
-
----
-title: Anhang C.6 - Model Card
-subtitle: Originalseite 6/8
-chapter: 3
-footnotes:
-  - 'Original: DeepSeek V4 Model Card PDF, https://fe-static.deepseek.com/chat/transparency/deepseek-V4-model-card-EN.pdf. Zugriff: 25.05.2026.'
----
-
-<img
-  src="/model-card/pages/deepseek-v4-model-card-6.png"
-  alt="Original DeepSeek V4 Model Card Seite 6"
-  class="mx-auto h-[455px] max-w-full rounded border border-gray-200 bg-white object-contain"
-/>
-
----
-title: Anhang C.7 - Model Card
-subtitle: Originalseite 7/8
-chapter: 3
-footnotes:
-  - 'Original: DeepSeek V4 Model Card PDF, https://fe-static.deepseek.com/chat/transparency/deepseek-V4-model-card-EN.pdf. Zugriff: 25.05.2026.'
----
-
-<img
-  src="/model-card/pages/deepseek-v4-model-card-7.png"
-  alt="Original DeepSeek V4 Model Card Seite 7"
-  class="mx-auto h-[455px] max-w-full rounded border border-gray-200 bg-white object-contain"
-/>
-
----
-title: Anhang C.8 - Model Card
-subtitle: Originalseite 8/8
-chapter: 3
-footnotes:
-  - 'Original: DeepSeek V4 Model Card PDF, https://fe-static.deepseek.com/chat/transparency/deepseek-V4-model-card-EN.pdf. Zugriff: 25.05.2026.'
----
-
-<img
-  src="/model-card/pages/deepseek-v4-model-card-8.png"
-  alt="Original DeepSeek V4 Model Card Seite 8"
-  class="mx-auto h-[455px] max-w-full rounded border border-gray-200 bg-white object-contain"
+  idWidth="10%"
 />

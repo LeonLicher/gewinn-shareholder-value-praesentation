@@ -1,17 +1,8 @@
 # Component API
 
-Compact reference for AI agents and developers creating the DeepSeek Slidev deck.
+Compact reference for AI agents and developers working on the Slidev deck.
 
-Use these existing layouts and components before considering new design primitives. For the DeepSeek presentation, `slides.md` should be enough for content work; open Vue sources only when this API reference is insufficient.
-
-Recommended usage:
-
-- `Table`: model overview, model-card summary, benchmark comparison.
-- `Columns`: side-by-side architecture explanations.
-- `DefinitionBox`: mechanisms such as attention, MoE routing, RL/post-training.
-- `ExampleBox`: implications, measured effects, limitations.
-- `Image`: architecture diagrams, official figures, model-card screenshot/excerpt.
-- `CitationTable`: appendix bibliography.
+Use these existing layouts and components before considering new design primitives. `slides.md` should be enough for content work; open Vue sources only when this API reference is insufficient.
 
 ## Layouts
 
@@ -87,17 +78,6 @@ Recommended usage:
   - `figureId?: string`
   - `captionAlign?: 'left' | 'center' | 'right'`
 - Registers figure numbering when `caption` or `source` is set.
-
-### `ModelTimeline`
-- Props: `items: Array<{ date: string; title: string; detail: string; active?: boolean }>`
-- Presentation-specific horizontal model-family timeline.
-
-### `V4FactSheet`
-- Props:
-  - `metrics: Array<{ value: string; label: string }>`
-  - `proBullets: string[]`
-  - `flashBullets: string[]`
-- Presentation-specific fact layout for DeepSeek-V4-Pro and DeepSeek-V4-Flash.
 
 ### `FigureList`
 - Props: `title?: string` (default `Abbildungsverzeichnis`)
