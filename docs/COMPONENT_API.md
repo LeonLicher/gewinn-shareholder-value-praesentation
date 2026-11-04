@@ -8,7 +8,12 @@ Use these existing layouts and components before considering new design primitiv
 
 ### `cover`
 - Uses `presentationInfo` from global frontmatter.
-- Shows title, subtitle, semester, and authors.
+- Shows title, subtitle, and semester with `CoverLogo` and `CoverBackdrop`.
+- Matches the FH/FEP presentation design. Authors appear on the separate `team` slide.
+
+### `team`
+- Uses `presentationInfo.authors` without changing the frontmatter schema.
+- Shows names and initials in blue cards: three on top, two centered below.
 
 ### `chapter-intro`
 - Expects per-slide `chapter` in frontmatter.
@@ -19,7 +24,7 @@ Use these existing layouts and components before considering new design primitiv
 - Wraps content in `SlideLayout` (header, divider, footer, footnotes).
 
 ### `closing`
-- Uses `presentationInfo.authors`.
+- Shows “Vielen Dank” and “Gibt es noch Fragen?” with `CoverLogo` and `CoverBackdrop`.
 
 ### `appendix-desktop`
 - Default layout with centered single desktop-style visual.

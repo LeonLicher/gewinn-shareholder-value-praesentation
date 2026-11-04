@@ -1,6 +1,6 @@
 <script setup>
-import Divider from '@components/Divider.vue'
-import AuthorList from './AuthorList.vue'
+import CoverBackdrop from '@components/CoverBackdrop.vue'
+import CoverLogo from '@layouts/CoverLogo.vue'
 
 const info = $slidev.configs?.presentationInfo || {
   title: '',
@@ -11,36 +11,30 @@ const info = $slidev.configs?.presentationInfo || {
 </script>
 
 <template>
-  <div class="h-full grid grid-cols-5 bg-white relative overflow-hidden">
-    <div class="col-span-3 flex flex-col relative z-10 px-8 pt-4 pb-15">
-      <div class="flex items-center gap-14 mb-8 -ml-1.5">
-        <img src="/images/fh-logo.jpg" alt="FH Münster" class="h-12" />
-        <img src="/images/msb.png" alt="MSB" class="h-12" />
-      </div>
+  <div class="slide-padding-x h-full bg-white relative overflow-hidden flex flex-col pt-12 pb-14">
+    <CoverBackdrop variant="cover" />
 
-      <div class="flex-1 flex flex-col justify-center pb-9">
-        <h1 class="text-5xl font-bold text-fh-blue leading-snug mb-2">
+    <div class="relative z-10 flex flex-col h-full">
+      <CoverLogo />
+
+      <div class="flex-1 flex flex-col justify-center -mt-4">
+        <p
+          v-if="info.semester"
+          class="text-fh-orange text-sm font-semibold tracking-[0.28em] uppercase mb-3"
+        >
+          {{ info.semester }}
+        </p>
+
+        <h1 class="text-[4rem] leading-[0.95] font-black text-fh-navy tracking-tight mb-6">
           {{ info.title }}
         </h1>
 
-        <h2 class="text-3xl font-semibold text-fh-blue mb-4">
+        <h2 class="text-3xl font-normal text-fh-slate leading-snug max-w-2xl">
           {{ info.subtitle }}
         </h2>
-
-        <p class="text-xl text-gray-400">
-          {{ info.semester }}
-        </p>
       </div>
 
-      <Divider :length="100" color="border-fh-orange" thickness="border-t-2" class="mb-6" />
-
-      <AuthorList :authors="info.authors" class="mt-8" />
-    </div>
-
-    <div class="col-span-2 relative">
-      <div class="absolute right-0 top-0 h-full w-full opacity-40">
-        <img src="/images/abstract_gitter.png" alt="" class="h-full w-full object-cover" />
-      </div>
+      <div class="h-px w-full bg-fh-line" />
     </div>
   </div>
 </template>

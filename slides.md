@@ -9,9 +9,9 @@ fonts:
   mono: 'Fira Code'
   weights: '400, 500, 600,700'
 presentationInfo:
-  title: 'Gewinn als Unternehmensziel?'
-  subtitle: 'Rechnungswesenorientierte Ziele vs. Shareholder Value'
-  semester: 'WiSe 2026/27 · Gruppe 1 · Prof. Dr. Juliane Wolf'
+  title: 'Gewinn als Zielgröße'
+  subtitle: 'Grenzen und Vergleich mit Shareholder Value'
+  semester: 'WiSe 2026/27 · Gruppe 1'
   authors:
     - name: 'Christian Dörschug'
     - name: 'Mathis Arends'
@@ -29,9 +29,15 @@ presentationInfo:
 layout: cover
 
 ---
+layout: team
+title: Vorstellung
+---
+
+---
 title: Gewinn als Unternehmensziel
 subtitle: Unzulänglichkeiten – und warum er trotzdem so beliebt ist
 chapter: 1
+class: profit-overview muted-lists
 ---
 
 <Columns columns="1.15fr 0.85fr" gap="1.25rem">
@@ -90,6 +96,7 @@ Beliebtheit: Der Gewinn ist bequem, rechtlich verankert (Ausschüttungsbemessung
 title: Gewinn ≠ Shareholder Value
 subtitle: Warum beide Ziele zu unterschiedlichen Entscheidungen führen
 chapter: 2
+class: muted-lists
 ---
 
 <Columns columns="1.1fr 0.9fr" gap="1.25rem">
