@@ -9,9 +9,9 @@ fonts:
   mono: 'Fira Code'
   weights: '400, 500, 600,700'
 presentationInfo:
-  title: 'Gewinn als Unternehmensziel?'
-  subtitle: 'Rechnungswesenorientierte Ziele vs. Shareholder Value'
-  semester: 'WiSe 2026/27 · Gruppe 1 · Prof. Dr. Juliane Wolf'
+  title: 'Gewinn als Zielgröße'
+  subtitle: 'Grenzen und Vergleich mit Shareholder Value'
+  semester: 'WiSe 2026/27 · Gruppe 1'
   authors:
     - name: 'Christian Dörschug'
     - name: 'Mathis Arends'
@@ -29,13 +29,20 @@ presentationInfo:
 layout: cover
 
 ---
+layout: team
+title: Vorstellung
+---
+
+---
 title: Gewinn als Unternehmensziel
 subtitle: Unzulänglichkeiten – und warum er trotzdem so beliebt ist
 chapter: 1
+class: profit-overview muted-lists
+clicks: 2
 ---
 
 <Columns columns="1.15fr 0.85fr" gap="1.25rem">
-  <BulletedList title="Unzulänglichkeiten des Gewinns">
+  <BulletedList v-click="1" title="Unzulänglichkeiten des Gewinns">
     <li>
       <b>Bewertungswahlrechte</b><Footnote text="Rappaport, A. (1999): Shareholder Value, 2. Aufl., Stuttgart, S. 16–23." />
       <SubText>LIFO/FIFO, Abschreibungsmethoden, Goodwill: Gewinn ändert sich, Cashflow und Wert nicht.</SubText>
@@ -54,7 +61,7 @@ chapter: 1
     </li>
   </BulletedList>
 
-  <BulletedList title="Gründe für die Beliebtheit">
+  <BulletedList v-click="2" title="Gründe für die Beliebtheit">
     <li>
       <b>Einfach &amp; verfügbar</b>
       <SubText>Wird pro Periode ermittelt, ist leicht verständlich und schnell kommuniziert.</SubText>
@@ -75,6 +82,8 @@ chapter: 1
 </Columns>
 
 <!--
+Animation: Klick 1 blendet die linke Spalte vollständig ein, Klick 2 die rechte. Nur dezentes Einblenden, keine Bewegung.
+
 Kernaussage: Der Gewinn misst Periodenerfolg nach Buchhaltungsregeln, nicht die Veränderung des ökonomischen Unternehmenswerts.
 
 Rappaport nennt drei Gründe (S. 16 ff.):
@@ -88,53 +97,16 @@ Beliebtheit: Der Gewinn ist bequem, rechtlich verankert (Ausschüttungsbemessung
 
 ---
 title: Gewinn ≠ Shareholder Value
-subtitle: Warum beide Ziele zu unterschiedlichen Entscheidungen führen
+subtitle: 'Gamma Inc.: Warum mehr Gewinn nicht automatisch mehr Wert bedeutet'
 chapter: 2
+clicks: 3
 ---
 
-<Columns columns="1.1fr 0.9fr" gap="1.25rem">
-  <div>
-    <Table
-      :headers="['Gamma Inc. (Mio. $)', 'Status quo', 'A: +15 Invest.', 'B: +30 Invest.']"
-      :rows="[
-        ['Umsatz', '200', '220', '240'],
-        ['Umsatzrendite (vor St.)', '15 %', '15 %', '≈ 14 %'],
-        ['Gewinn nach Steuern', '18,0', '19,8', '20,4'],
-        ['Gewinnwachstum', '–', '<b>+10 %</b>', '<b>+13,3 %</b>'],
-        ['Shareholder Value', '150', '165 − 15 = <b>150</b>', '170 − 30 = <b>140</b>']
-      ]"
-      :columnWidths="['34%', '20%', '23%', '23%']"
-      accent="blue"
-      size="sm"
-    />
-    <div class="mt-3">
-      <ExampleBox title="Ergebnis">
-        Nach dem Gewinnziel wäre <b>B</b> die beste Wahl. Nach dem Shareholder-Value-Ziel ist <b>B</b> die schlechteste, weil die Rendite auf die Zusatzinvestition unter den Kapitalkosten liegt.<Footnote text="Beispiel Gamma Inc. nach Rappaport, A. (1999): Shareholder Value, 2. Aufl., Stuttgart, S. 21–23; Wert = Cashflow / 12 % Eigenkapitalkosten (ewige Rente)." />
-      </ExampleBox>
-    </div>
-  </div>
-
-  <BulletedList title="Weitere Belege">
-    <li>
-      <b>Gewinn ≠ Cashflow</b><Footnote text="Rappaport, A. (1999): Shareholder Value, 2. Aufl., Stuttgart, S. 17 (IBM/Lotus), S. 19 (Tab. 2-1), S. 24 (Tab. 2-2)." />
-      <SubText>Tabelle 2-1: 500.000 $ Reingewinn, aber nur 40.000 $ Cashflow (Working Capital + Investitionen).</SubText>
-    </li>
-    <li>
-      <b>Bilanzpolitik</b>
-      <SubText>IBM/Lotus: über die Hälfte der 3,2 Mrd. $ sofort als F&amp;E abgeschrieben. Spätere Gewinne steigen, der Wert bleibt gleich.</SubText>
-    </li>
-    <li>
-      <b>Empirie S&amp;P 500</b>
-      <SubText>1994: EPS +39,9 %, Aktionärsrendite +1,3 %; 1991: EPS −25,2 %, Rendite +30,6 %.</SubText>
-    </li>
-    <li>
-      <b>Fazit</b>
-      <SubText>Wert entsteht nur, wenn die Rendite neuer Investitionen über den Kapitalkosten liegt.</SubText>
-    </li>
-  </BulletedList>
-</Columns>
+<GammaComparison v-click="1" />
 
 <!--
+Animation: zunächst leer → Klick 1: Ausgangspunkt → Klick 2: Szenario A → Klick 3: Szenario B. Mit der normalen Slidev-Steuerung fortschalten (Pfeiltaste rechts oder Leertaste); Pfeiltaste links geht zurück.
+
 Mechanismus: Wachstum mit Investitionen kann den Gewinn auch dann steigern, wenn die Rendite unter den Kapitalkosten liegt. Der Gewinn zieht weder die Investition noch die Kapitalkosten ab.
 
 Gamma-Rechnung (Eigenkapitalkosten 12 %, Vollausschüttung, kein Fremdkapital):

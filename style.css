@@ -1,7 +1,50 @@
+:root {
+  --slide-padding-x: 2.5rem;
+}
+
+.slide-padding-x {
+  padding-inline: var(--slide-padding-x);
+}
+
 .slidev-code,
 .slidev-code pre,
 pre.shiki {
   background: #fcfcfcff !important;
   font-size: 0.8em !important;
   border-radius: 7.5px !important;
+}
+
+.muted-lists .bulleted-list > ul > li > b {
+  color: #35516a;
+}
+
+.profit-overview .bulleted-list h3 {
+  margin: 0 0 0.75rem;
+  padding-left: 0;
+  color: #6b7681;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.profit-overview .columns .bulleted-list > ul {
+  margin-left: 0.625rem;
+}
+
+.profit-overview .bulleted-list.slidev-vclick-target {
+  transition: opacity 250ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profit-overview .bulleted-list.slidev-vclick-target {
+    transition: none;
+  }
+}
+
+.muted-lists .bulleted-list > ul > li > span.block {
+  color: #6b7681;
+}
+
+.muted-lists .bulleted-list > ul > li::before {
+  color: #5b7892;
 }

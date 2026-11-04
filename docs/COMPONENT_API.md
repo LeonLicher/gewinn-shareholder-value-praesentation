@@ -8,7 +8,12 @@ Use these existing layouts and components before considering new design primitiv
 
 ### `cover`
 - Uses `presentationInfo` from global frontmatter.
-- Shows title, subtitle, semester, and authors.
+- Shows title, subtitle, and semester with `CoverLogo` and `CoverBackdrop`.
+- Matches the FH/FEP presentation design. Authors appear on the separate `team` slide.
+
+### `team`
+- Uses `presentationInfo.authors` without changing the frontmatter schema.
+- Shows names and initials in blue cards: three on top, two centered below.
 
 ### `chapter-intro`
 - Expects per-slide `chapter` in frontmatter.
@@ -19,7 +24,7 @@ Use these existing layouts and components before considering new design primitiv
 - Wraps content in `SlideLayout` (header, divider, footer, footnotes).
 
 ### `closing`
-- Uses `presentationInfo.authors`.
+- Shows “Vielen Dank” and “Gibt es noch Fragen?” with `CoverLogo` and `CoverBackdrop`.
 
 ### `appendix-desktop`
 - Default layout with centered single desktop-style visual.
@@ -31,6 +36,14 @@ Use these existing layouts and components before considering new design primitiv
 - Default layout with 2 columns (`Columns`).
 
 ## Components
+
+### `GammaComparison`
+- Animierter Vergleich von Gamma Inc.: zunächst leer → Klick 1: Status quo → Klick 2: Szenario A → Klick 3: Szenario B.
+- Keine Props; Zahlen und Quellenbezug nach Rappaport (1999), S. 21–23.
+- Mit `<GammaComparison v-click="1" />` und `clicks: 3` im Folien-Frontmatter verwenden; nutzt den Slidev-Klickzustand und die normale Präsentationssteuerung einschließlich Presenter-Synchronisation. Keine eigenen Navigationselemente.
+- Blendet die Fußnote vor dem ersten Klick ebenfalls aus und reserviert den Platz für einen unveränderten Aufbau beim Einblenden.
+- Animiert Kennzahlen und Balken; markiert den Status quo auf getrennt beschrifteten Skalen.
+- Berücksichtigt `prefers-reduced-motion`; animiert nur in Präsentationsansichten.
 
 ### `BulletedList`
 - Props: `title?: string`
