@@ -37,6 +37,14 @@ Use these existing layouts and components before considering new design primitiv
 
 ## Components
 
+### `GammaComparison`
+- Animierter Vergleich von Gamma Inc.: zunächst leer → Klick 1: Status quo → Klick 2: Szenario A → Klick 3: Szenario B.
+- Keine Props; Zahlen und Quellenbezug nach Rappaport (1999), S. 21–23.
+- Mit `<GammaComparison v-click="1" />` und `clicks: 3` im Folien-Frontmatter verwenden; nutzt den Slidev-Klickzustand und die normale Präsentationssteuerung einschließlich Presenter-Synchronisation. Keine eigenen Navigationselemente.
+- Blendet die Fußnote vor dem ersten Klick ebenfalls aus und reserviert den Platz für einen unveränderten Aufbau beim Einblenden.
+- Animiert Kennzahlen und Balken; markiert den Status quo auf getrennt beschrifteten Skalen.
+- Berücksichtigt `prefers-reduced-motion`; animiert nur in Präsentationsansichten.
+
 ### `BulletedList`
 - Props: `title?: string`
 - Slot: list items (`<li>` expected)
